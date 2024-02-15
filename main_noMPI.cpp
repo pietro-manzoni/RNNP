@@ -76,7 +76,7 @@ int main(int argc, char* argv[]){
     std::ignore = dt_test.reduce_dataset("<",  "2012-01-01 00:00:00");
 
     /*******************************  REGRESSORS and REGRESSANDS  ***********************************/
-
+int aaaaa = 0;
     // Define column of exogenous inputs
     const std::string REGRESSAND_VARIABLE = "Demand";
 
