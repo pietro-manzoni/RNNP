@@ -6,3 +6,6 @@ cmake-build-debug
 
 # Ignora le cartelle che cominciano per MPI
 MPI*
+
+# Ignora le cartelle di output
+OutFiles*
