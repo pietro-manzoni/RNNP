@@ -1,0 +1,27 @@
+1_ loggarsi
+log: ssh -l pmanzoni -v tosca.mate.polimi.it
+pwd: Nonpiangeresiifelice
+
+
+2_ accedere alla macchina
+ssh hpc
+
+3_ set directory
+
+cd /u/archive/dott/giuffra/tesimanzoni/PhD/RNN\(p\)_Full/
+
+
+4_access to suitable directory
+
+5_ run subfile
+qsub qsub_script_mpi_gigatlong.sub
+
+——————————————————————————————————————————————————————————
+
+cat MPI_G/OutFiles12/training_stats.csv
+
+-----------------------------------------------------------
+RNN(p)
+-----------------------------------------------------------
+
+mpic++ -Ofast -std=c++14 main_grid_search_GLong.cpp global.cpp DataStructures/AlgebraicOperations.cpp DataStructures/Matrix.cpp DataStructures/VectorClass.cpp DataStructures/Dataset.cpp GradientAlgorithms/AbstractGradientAlgo.cpp GradientAlgorithms/BPTT.cpp GradientAlgorithms/RTRL.cpp GradientAlgorithms/TRRL.cpp Layers/FirstLayer.cpp ActivationFunctions/AbstractActivationFunction.cpp ActivationFunctions/ExpLU.cpp ActivationFunctions/LeakyReLU.cpp ActivationFunctions/Linear.cpp ActivationFunctions/ReLU.cpp ActivationFunctions/Sigmoid.cpp ActivationFunctions/Softmax.cpp ActivationFunctions/Swish.cpp ActivationFunctions/Tanh.cpp ActivationFunctions/Softsign.cpp Losses/AbstractLossFunction.cpp Losses/LogLikelihood.cpp Losses/GaussianCRPS.cpp Losses/GaussianCRPSLambda.cpp Losses/GaussianCRPSTrivial.cpp Losses/GaussianWinkler.cpp Losses/GaussianWinklerTrivial.cpp Losses/MSE.cpp Metrics/AbstractMetric.cpp Metrics/MSE_metric.cpp Models/LinearModel.cpp Models/RnnModel.cpp Solvers/AbstractSolver.cpp Solvers/Adam.cpp Solvers/Nadam.cpp utilities.cpp -o my_mpi_application_gigatlong1

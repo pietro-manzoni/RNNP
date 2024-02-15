@@ -1,0 +1,8 @@
+# Ignora i file di sistema Mac
+.DS_store
+
+# Ignora la cartella cmake-build-debug
+cmake-build-debug
+
+# Ignora le cartelle che cominciano per MPI
+MPI*
