@@ -41,54 +41,55 @@ int main(int argc, char* argv[]){
 
     const unsigned SS = 10;  // shuffling_seed
 
-    main_aux(rank, size, 2,  5,  0.001, 64, {1,2,24}, "MPI_Gigat/OutFiles1",  SS, 100,  200,  1.00);
-/*  main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles2",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles3",  SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles1",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles2",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles3",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles4",  SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles5",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles6",  SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles4",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles5",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles6",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles7",  SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles8",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles9",  SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles7",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles8",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles9",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles10", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles11", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles12", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles10", SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles11", SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles12", SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles13", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles14", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles15", SS, 300,  400,  1.00);
 
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles16", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles17", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles18", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles13", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles14", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles15", SS, 200,  300,  1.00);
 
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles19", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles20", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles21", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles16", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles17", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles18", SS, 200,  300,  1.00);
 
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles22", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles23", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles24", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles19", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles20", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles21", SS, 200,  300,  1.00);
 
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles25", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles26", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles27", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles22", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles23", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles24", SS, 200,  300,  1.00);
 
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles28", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles29", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles30", SS, 300,  400,  1.00);
 
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles31", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles32", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles33", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles25", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles26", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles27", SS, 300,  400,  1.00);
 
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles34", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles35", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles36", SS, 300,  400,  1.00);
-*/
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles28", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles29", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles30", SS, 300,  400,  1.00);
+
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles31", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles32", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles33", SS, 300,  400,  1.00);
+
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Gigat/OutFiles34", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Gigat/OutFiles35", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Gigat/OutFiles36", SS, 300,  400,  1.00);
 
     MPI_Finalize();
 
@@ -179,7 +180,7 @@ NN::type main_aux(int rank, int size,
 
     // Training and optimization
     const NN::type LEARNING_RATE = learning_rate;           // learning rate
-    const unsigned NUM_EPOCHS = 1000;                       // maximum number of epochs for training
+    const unsigned NUM_EPOCHS = 500;                        // maximum number of epochs for training
     const unsigned BATCH_SIZE = batch_size;                 // number of sub-sequences in each mini-batch
     const NN::type LR_DECAY = 0.0;                          // decay of learning rate
 
@@ -317,8 +318,8 @@ NN::type main_aux(int rank, int size,
     }
     else{ // OUTPUT_NEURONS == 2
 
-       rnn.set_loss("LogLikelihood");
-       //rnn.set_loss("GaussianCRPSLambda", tail_decay);
+       //rnn.set_loss("LogLikelihood");
+       rnn.set_loss("GaussianCRPSLambda", tail_decay);
        //rnn.set_loss("GaussianWinkler", tail_decay);
 
         rnn.set_metric("MSE_metric");

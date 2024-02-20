@@ -12,9 +12,6 @@
 #include "global.h"
 #include "utilities.h"
 
-#include "DataStructures/AlgebraicOperations.h"
-#include "DataStructures/CircularBuffer.h"
-#include "DataStructures/Matrix.h"
 #include "DataStructures/VectorClass.h"
 #include "DataStructures/Dataset.h"
 
@@ -25,98 +22,78 @@
 
 
 NN::type main_aux(int rank, int size,
-  unsigned output_neurons, unsigned hidden_neurons,
-  NN::type learning_rate, unsigned batch_size,
-  std::vector<unsigned> which_lags, std::string foldername_outfiles,
-  unsigned shuffling_seed, unsigned dl1_seed = 100, unsigned dl2_seed = 200, NN::type tail_decay = 1.0);
+    unsigned output_neurons, unsigned hidden_neurons,
+    NN::type learning_rate, unsigned batch_size,
+    std::vector<unsigned> which_lags, std::string foldername_outfiles,
+    unsigned shuffling_seed, unsigned dl1_seed = 100, unsigned dl2_seed = 200, NN::type tail_decay = 1.0);
 
 
 int main(int argc, char* argv[]){
 
-  int rank = 0;
-  int size = 1;
+    int rank = 0;
+    int size = 1;
 
-  MPI_Init(&argc, &argv);
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-  const unsigned SS = 10;  // shuffling_seed
+    std::cout <<  "Process " << rank <<  " out of " << size << std::endl;
 
-  main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles1",  SS, 100,  200,  1.00);
-  main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles2",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles3",  SS, 300,  400,  1.00);
-  return 0;
+    const unsigned SS = 10;  // shuffling_seed
 
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles4",  SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles5",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles6",  SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles1",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles2",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles3",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles7",  SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles8",  SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles9",  SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles4",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles5",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles6",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles10", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles11", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles12", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles7",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles8",  SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles9",  SS, 100,  200,  1.00);
 
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles13", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles14", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles15", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles16", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles17", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles18", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles19", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles20", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles21", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles22", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles23", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles24", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles25", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles26", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles27", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles28", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles29", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles30", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles31", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles32", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles33", SS, 300,  400,  1.00);
-
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles34", SS, 100,  200,  1.00);
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles35", SS, 200,  300,  1.00);
-  main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles36", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles10", SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles11", SS, 100,  200,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles12", SS, 100,  200,  1.00);
 
 
-// 4y Best Hyperparameters Configuration
-/*
-  main_aux(rank, size, 1, 10,  0.001,  32, {1},      "MPI_GLong/OutFiles1");
-  main_aux(rank, size, 1, 10,  0.001,  32, {1,2},    "MPI_GLong/OutFiles2");
-  main_aux(rank, size, 1, 10,  0.001,  32, {1,2,24}, "MPI_GLong/OutFiles3");
-  main_aux(rank, size, 2, 10,  0.001,  32, {1},      "MPI_GLong/OutFiles4");
-  main_aux(rank, size, 2, 10,  0.001,  32, {1,2},    "MPI_GLong/OutFiles5");
-  main_aux(rank, size, 2, 10,  0.001,  32, {1,2,24}, "MPI_GLong/OutFiles6");
-*/
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles13", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles14", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles15", SS, 200,  300,  1.00);
+
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles16", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles17", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles18", SS, 200,  300,  1.00);
+
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles19", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles20", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles21", SS, 200,  300,  1.00);
+
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles22", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles23", SS, 200,  300,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles24", SS, 200,  300,  1.00);
 
 
-// 5y Best Hyperparameters Configuration
-/*
-  main_aux(rank, size, 1, 15,  0.001, 64, {1},      "MPI_GLong/OutFiles1");
-  main_aux(rank, size, 1, 15,  0.001, 32, {1,2},    "MPI_GLong/OutFiles2");
-  main_aux(rank, size, 1, 15,  0.001, 32, {1,2,24}, "MPI_GLong/OutFiles3");
-  main_aux(rank, size, 2, 15,  0.001, 64, {1},      "MPI_GLong/OutFiles4");
-  main_aux(rank, size, 2, 15,  0.001, 64, {1,2},    "MPI_GLong/OutFiles5");
-  main_aux(rank, size, 2, 10,  0.001, 32, {1,2,24}, "MPI_GLong/OutFiles6");
-*/
+    main_aux(rank, size, 2,  5,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles25", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles26", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2,  5,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles27", SS, 300,  400,  1.00);
 
+    main_aux(rank, size, 2, 10,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles28", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles29", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 10,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles30", SS, 300,  400,  1.00);
 
-  MPI_Finalize();
+    main_aux(rank, size, 2, 15,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles31", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles32", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 15,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles33", SS, 300,  400,  1.00);
 
-  return 0;
+    main_aux(rank, size, 2, 20,  0.0001, 64, {1,2,24}, "MPI_Cerb/OutFiles34", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.0005, 64, {1,2,24}, "MPI_Cerb/OutFiles35", SS, 300,  400,  1.00);
+    main_aux(rank, size, 2, 20,  0.001,  64, {1,2,24}, "MPI_Cerb/OutFiles36", SS, 300,  400,  1.00);
+
+    MPI_Finalize();
+
+    return 0;
 
 }
 
@@ -166,7 +143,7 @@ NN::type main_aux(int rank, int size,
     std::ignore = dt_test.reduce_dataset(">=", "2010-12-30 00:00:00");
     std::ignore = dt_test.reduce_dataset("<",  "2012-01-01 00:00:00");
 
-    /*******************************  REGRESSORS and REGRESSANDS  ***********************************/
+    /*******************************  REGRESSORS and REGRESSAND  ***********************************/
 
     // Define column of exogenous inputs
     const std::string REGRESSAND_VARIABLE = "Demand";
@@ -187,8 +164,7 @@ NN::type main_aux(int rank, int size,
             "DoW_5","DoW_6",  "Holiday",                    //(Sat,Sun,Hol)
 
             "SY1", "CY1", "SY2", "CY2",
-            "SD1", "CD1", "SD2", "CD2",
-
+            "SD1", "CD1", "SD2", "CD2"
     };
 
     /***********************************  RNN SETTINGS  ************************************/
@@ -204,7 +180,7 @@ NN::type main_aux(int rank, int size,
 
     // Training and optimization
     const NN::type LEARNING_RATE = learning_rate;           // learning rate
-    const unsigned NUM_EPOCHS = 1000;                       // maximum number of epochs for training
+    const unsigned NUM_EPOCHS = 500;                       // maximum number of epochs for training
     const unsigned BATCH_SIZE = batch_size;                 // number of sub-sequences in each mini-batch
     const NN::type LR_DECAY = 0.0;                          // decay of learning rate
 
@@ -253,8 +229,8 @@ NN::type main_aux(int rank, int size,
     /**************************************************************************************************/
     /*
      * The training phase is composed by the following operations:
-     * 1) Importation of Datasets
-     *
+     * 1) Importation of Datasets and normalization of the data
+     * 2) Creation of a General Linear Model
      */
 
 
@@ -303,9 +279,12 @@ NN::type main_aux(int rank, int size,
         std::vector<NN::type> y_train_GLM = dt_train_GLM.extract_vector(REGRESSAND_VARIABLE);
         std::vector<NN::type> y_test_GLM = dt_test_GLM.extract_vector(REGRESSAND_VARIABLE);
 
+        // set flag for outliers removal (using IQR)
+        const bool REMOVE_OUTLIERS = true;
+
         // creating and fitting the LinearModel object
         LinearModel lm;
-        lm.fit(x_train_GLM, y_train_GLM);
+        lm.fit(x_train_GLM, y_train_GLM, REMOVE_OUTLIERS);
 
         //extracting predictions
         std::vector<NN::type> tmp_fitted = lm.predict(x_train_GLM);
@@ -342,10 +321,9 @@ NN::type main_aux(int rank, int size,
        rnn.set_loss("LogLikelihood");
        //rnn.set_loss("GaussianCRPSLambda", tail_decay);
        //rnn.set_loss("GaussianWinkler", tail_decay);
- 
 
-        //rnn.set_metric("MSE_metric");
-        rnn.set_metric("None");
+        rnn.set_metric("MSE_metric");
+        //rnn.set_metric("None");
     }
 
     // set algorithm for computation of gradients
@@ -525,7 +503,7 @@ NN::type main_aux(int rank, int size,
         backtest95 = compute_statistics(mean_predicted, stdev_predicted, point_predicted,
                            target_test, output_log);
 
-        for (unsigned receiver = 1; receiver < size; ++receiver)
+        for (int receiver = 1; receiver < size; ++receiver)
             MPI_Send(&backtest95, 1, MPI_DOUBLE, receiver, 0, MPI_COMM_WORLD);
 
     }

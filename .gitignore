@@ -9,3 +9,6 @@ MPI*
 
 # Ignora le cartelle di output
 OutFiles*
+
+# Ignora le cartelle che iniziano per Local
+Local*

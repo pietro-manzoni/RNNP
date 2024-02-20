@@ -311,7 +311,6 @@ void RnnModel::fit(const std::vector< std::vector<VectorClass> >& x_sequences_tr
             ++epochs_since_new_min;
         }
 
-        std::cout << "Epoch " << epoch_counter << std::endl;
     }
 
     // restore best status for training

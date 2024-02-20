@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -S /bin/bash
 #
-#PBS -l nodes=1:ppn=16,walltime=100:00:00 -q gigatlong
+#PBS -l nodes=1:ppn=8,walltime=100:00:00 -q gigatlong
 
 #PBS -N myjob
 
@@ -23,5 +23,5 @@ sort ${PBS_NODEFILE} | uniq -c | awk '{ printf("%s\n", $2); }' > mpd.nodes
 
 
 #-------------------RUN THE EXECUTABLE---------------------------------#
-mpiexec -machinefile mpd.nodes -n 16 ./my_mpi_application_long > ./output_long.txt 2>&1
+mpiexec -machinefile mpd.nodes -n 8 ./my_mpi_application_long > ./output_long.txt 2>&1
 #---------------------------------------------------------------------#
